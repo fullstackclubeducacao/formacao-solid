@@ -14,7 +14,15 @@
     "o-2-bad": "npm run dev-ts ./2-O/exemplo-2/bad/index.ts",
     "o-2-good": "npm run dev-ts ./2-O/exemplo-2/good/index.ts",
     "o-3-bad": "npm run dev-ts ./2-O/exemplo-3/bad/index.ts",
-    "o-3-good": "npm run dev-ts ./2-O/exemplo-3/good/index.ts"
+    "o-3-good": "npm run dev-ts ./2-O/exemplo-3/good/index.ts",
+    "l-1-bad": "npm run dev-ts ./3-L/exemplo-1/bad/index.ts",
+    "l-1-good": "npm run dev-ts ./3-L/exemplo-1/good/index.ts",
+    "l-2-bad": "npm run dev-ts ./3-L/exemplo-2/bad/index.ts",
+    "l-2-good": "npm run dev-ts ./3-L/exemplo-2/good/index.ts",
+    "l-3-bad": "npm run dev-ts ./3-L/exemplo-3/bad/index.ts",
+    "l-3-good": "npm run dev-ts ./3-L/exemplo-3/good/index.ts",
+    "l-4-bad": "npm run dev-ts ./3-L/exemplo-3/bad/index.ts",
+    "l-4-good": "npm run dev-ts ./3-L/exemplo-3/good/index.ts"
   },
   "keywords": [],
   "author": "",
