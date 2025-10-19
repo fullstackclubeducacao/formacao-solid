@@ -7,7 +7,15 @@ interface NotificationService {
 }
 
 // Implementações concretas - dependem da abstração
-class EmailService implements NotificationService {
+class EmailServiceDIP implements NotificationService {
+  constructor(
+    private host: string,
+    private port: number,
+    private protocol: string,
+    private user: string,
+    private pass: string
+  ) { }
+
   send(to: string, subject: string, message: string): void {
     console.log(`📧 Enviando email para ${to}`);
     console.log(`   Assunto: ${subject}`);
@@ -30,7 +38,7 @@ class PushNotificationService implements NotificationService {
 }
 
 // Serviço de alto nível - depende da abstração, não da implementação
-class UserService {
+class UserServiceDIP {
   private notificationService: NotificationService; // Dependência da interface!
 
   constructor(notificationService: NotificationService) {
@@ -65,23 +73,29 @@ class MockNotificationService implements NotificationService {
 
 // Testes e demonstração
 console.log("=== Usando Email ===");
-const emailService = new EmailService();
-const userServiceWithEmail = new UserService(emailService);
+const emailService = new EmailServiceDIP(
+  "smtp.example.com",
+  587,
+  "TLS",
+  "user@example.com",
+  "password"
+);
+const userServiceWithEmail = new UserServiceDIP(emailService);
 userServiceWithEmail.registerUser("joao@example.com", "João Silva");
 
 console.log("\n=== Usando SMS ===");
 const smsService = new SMSService();
-const userServiceWithSMS = new UserService(smsService);
+const userServiceWithSMS = new UserServiceDIP(smsService);
 userServiceWithSMS.registerUser("+5511999999999", "Maria Santos");
 
 console.log("\n=== Usando Push Notification ===");
 const pushService = new PushNotificationService();
-const userServiceWithPush = new UserService(pushService);
+const userServiceWithPush = new UserServiceDIP(pushService);
 userServiceWithPush.registerUser("user123", "Pedro Costa");
 
 console.log("\n=== Usando Mock para Testes ===");
 const mockService = new MockNotificationService();
-const userServiceForTest = new UserService(mockService);
+const userServiceForTest = new UserServiceDIP(mockService);
 userServiceForTest.registerUser("test@example.com", "Usuário Teste");
 console.log(`📊 Mensagens capturadas: ${mockService.sentMessages.length}`);
 

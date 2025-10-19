@@ -3,6 +3,14 @@
 
 // Serviço de baixo nível - implementação concreta
 class EmailService {
+  constructor(
+    private host: string,
+    private port: number,
+    private protocol: string,
+    private user: string,
+    private pass: string
+  ) { }
+
   sendEmail(to: string, subject: string, body: string): void {
     console.log(`📧 Enviando email para ${to}`);
     console.log(`   Assunto: ${subject}`);
@@ -15,7 +23,13 @@ class UserService {
   private emailService: EmailService; // Dependência direta da classe concreta!
 
   constructor() {
-    this.emailService = new EmailService(); // Acoplamento forte!
+    this.emailService = new EmailService(
+      "smtp.example.com",
+      587,
+      "TLS",
+      "user@example.com",
+      "password"
+    ); // Acoplamento forte!
   }
 
   registerUser(email: string, name: string): void {
